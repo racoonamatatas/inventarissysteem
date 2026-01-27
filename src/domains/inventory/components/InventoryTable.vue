@@ -1,5 +1,9 @@
-<script setup>
-const props = defineProps(['inventory']);
+<script setup lang="ts">
+import type {InventoryItem} from '../types/types';
+
+const {inventory} = defineProps<{
+    inventory: InventoryItem[];
+}>();
 </script>
 
 <template>
@@ -10,7 +14,7 @@ const props = defineProps(['inventory']);
                 <th>Actual Amount</th>
                 <th>Minimum Amount</th>
             </tr>
-            <tr v-for="(item, index) in props.inventory" :key="index">
+            <tr v-for="(item, index) in inventory" :key="index">
                 <td>{{ item.name }}</td>
                 <td>
                     <input v-model.number="item.actualAmount" min="0" />

@@ -1,7 +1,8 @@
 import {computed, ref} from 'vue';
+import type {InventoryItem} from './types/types';
 
 // state
-const inventory = ref([
+const inventory = ref<InventoryItem[]>([
     {id: 0, name: 'Green Paint', actualAmount: 10, minimumAmount: 2},
     {id: 1, name: 'HDMI cable', actualAmount: 20, minimumAmount: 5},
     {id: 2, name: 'Screwes', actualAmount: 100, minimumAmount: 40},
@@ -12,5 +13,6 @@ const inventory = ref([
 ]);
 
 // getters
-export const getInventory = computed(() => inventory.value);
+export const getInventory = computed<InventoryItem[]>(() => inventory.value);
+
 // actions
