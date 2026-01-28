@@ -11,8 +11,9 @@ const emit = defineEmits<{
     add: [copyItem: InventoryItem];
 }>();
 
-const router = useRouter();
 const copyItem = ref<InventoryItem>({...item});
+
+const router = useRouter();
 
 const handleCancel = () => {
     router.push({name: 'inventory.overview'});
@@ -20,6 +21,7 @@ const handleCancel = () => {
 
 const handleAdd = () => {
     emit('add', copyItem.value);
+    router.push({name: 'inventory.overview'});
 };
 </script>
 

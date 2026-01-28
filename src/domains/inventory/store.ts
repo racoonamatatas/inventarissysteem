@@ -16,3 +16,9 @@ const inventory = ref<InventoryItem[]>([
 export const getInventory = computed<InventoryItem[]>(() => inventory.value);
 
 // actions
+let nextId = inventory.value.length; // Ids start at zero so length is the next possible one.
+
+export const addToInventory = (item: InventoryItem) => {
+    item.id = nextId++;
+    inventory.value.push(item);
+};
