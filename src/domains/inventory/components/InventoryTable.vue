@@ -1,9 +1,12 @@
 <script setup lang="ts">
+import {useRouter} from 'vue-router';
 import type {InventoryItem} from '../types/types';
 
 const {inventory} = defineProps<{
     inventory: InventoryItem[];
 }>();
+
+const router = useRouter();
 </script>
 
 <template>
@@ -20,6 +23,9 @@ const {inventory} = defineProps<{
                     <input v-model.number="item.actualAmount" min="0" />
                 </td>
                 <td>{{ item.minimumAmount }}</td>
+                <td>
+                    <button @click="router.push(`/edit/${item.id}`)">Edit</button>
+                </td>
             </tr>
         </tbody>
     </table>

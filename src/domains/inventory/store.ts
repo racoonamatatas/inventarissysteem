@@ -14,6 +14,8 @@ const inventory = ref<InventoryItem[]>([
 
 // getters
 export const getInventory = computed<InventoryItem[]>(() => inventory.value);
+export const getInventoryItemById = (id: number) =>
+    computed<InventoryItem>(() => inventory.value.find((item: InventoryItem) => item.id === id));
 
 // actions
 let nextId = inventory.value.length; // Ids start at zero so length is the next possible one.
@@ -21,4 +23,11 @@ let nextId = inventory.value.length; // Ids start at zero so length is the next 
 export const addToInventory = (item: InventoryItem) => {
     item.id = nextId++;
     inventory.value.push(item);
+};
+
+export const updateItemInInventory = (updatedItem: InventoryItem) => {
+    const index = inventory.value.findIndex((item: InventoryItem) => item.id === updatedItem.id);
+    if (index !== -1) {
+        inventory.value[index] = updatedItem;
+    }
 };

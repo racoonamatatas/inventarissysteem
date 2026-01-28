@@ -10,13 +10,11 @@ const item = ref<InventoryItem>({
     minimumAmount: 0,
 });
 
-// const onAdd = (newItem: InventoryItem) => {
-//     addToInventory(newItem);
-// }
+const buttonText: string = 'Add';
 </script>
 
 <template>
     <div>
-        <InventoryForm :item="item" @add="addToInventory" />
+        <InventoryForm :item="item" :submitButtonText="buttonText" @submit="addToInventory" />
     </div>
 </template>

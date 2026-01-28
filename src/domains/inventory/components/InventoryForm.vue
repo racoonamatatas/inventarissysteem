@@ -3,12 +3,13 @@ import {ref} from 'vue';
 import type {InventoryItem} from '../types/types';
 import {useRouter} from 'vue-router';
 
-const {item} = defineProps<{
+const {item, submitButtonText} = defineProps<{
     item: InventoryItem;
+    submitButtonText: string;
 }>();
 
 const emit = defineEmits<{
-    add: [copyItem: InventoryItem];
+    submit: [copyItem: InventoryItem];
 }>();
 
 const copyItem = ref<InventoryItem>({...item});
@@ -19,8 +20,8 @@ const handleCancel = () => {
     router.push({name: 'inventory.overview'});
 };
 
-const handleAdd = () => {
-    emit('add', copyItem.value);
+const handleSubmit = () => {
+    emit('submit', copyItem.value);
     router.push({name: 'inventory.overview'});
 };
 </script>
@@ -29,6 +30,6 @@ const handleAdd = () => {
     <input v-model.trim="copyItem.name" type="text" />
     <input v-model.number="copyItem.actualAmount" />
     <input v-model.number="copyItem.minimumAmount" />
-    <button @click="handleAdd">Add</button>
+    <button @click="handleSubmit">{{ submitButtonText }}</button>
     <button @click="handleCancel">Cancel</button>
 </template>
