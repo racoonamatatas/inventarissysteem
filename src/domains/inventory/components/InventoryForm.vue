@@ -12,7 +12,7 @@ const emit = defineEmits<{
     submit: [copyItem: InventoryItem];
 }>();
 
-const copyItem = ref<InventoryItem>({...item});
+const copyItem = ref({...item});
 
 const router = useRouter();
 

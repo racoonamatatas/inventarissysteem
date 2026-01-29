@@ -1,13 +1,10 @@
 <script setup lang="ts">
-import {computed, ComputedRef} from 'vue';
+import {computed} from 'vue';
 import {getInventory} from '../store';
-import {InventoryItem} from '../types/types';
 
-const inventory: ComputedRef<InventoryItem[]> = getInventory;
+const inventory = getInventory;
 
-const needToOrder = computed<InventoryItem[]>(() =>
-    inventory.value.filter(item => item.actualAmount < item.minimumAmount),
-);
+const needToOrder = computed(() => inventory.value.filter(item => item.actualAmount < item.minimumAmount));
 </script>
 
 <template>
